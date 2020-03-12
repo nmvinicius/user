@@ -1,0 +1,16 @@
+{%  extends 'MainLayout.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+    <form action="." method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Login">
+    </form>
+    <div>
+        <ul>
+            {% for user_ in users %}
+                <li>{{ user_ }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{%  extends 'MainLayout.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+    <form action="." method="POST" enctype="multipart/form-data" class="form-group">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" name="" value="Register">
+    </form>
+    {% if messages %}
+        {{ messages }}
+    {% endif %}
+{% endblock %}
