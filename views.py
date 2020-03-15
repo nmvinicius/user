@@ -39,6 +39,8 @@ def user_delete(request):
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('user_profile')
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')

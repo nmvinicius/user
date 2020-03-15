@@ -1,7 +1,8 @@
 {%  extends 'MainLayout.html' %}
 {% load crispy_forms_tags %}
 {% block main %}
-    <form action="." method="POST" enctype="multipart/form-data" class="form-group">
+    <form action="." method="POST" enctype="multipart/form-data">
+        <h1>Register</h1>
         {% csrf_token %}
         {{ form | crispy }}
         <input type="submit" name="" value="Register">
