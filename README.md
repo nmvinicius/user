@@ -4,6 +4,10 @@
 This is a django app for user control
 
 ## Installation
+* Install django rest framework
+```shell script
+$ pip install djangorestframework markdown django-filter
+```
 * Clone the application at the project root
 ```shell script
 $ git clone git@github.com:ViniciusNunesMartins/user.git
@@ -13,6 +17,7 @@ $ git clone git@github.com:ViniciusNunesMartins/user.git
     ```python
     INSTALLED_APPS = [
         #...
+        'rest_framework'
         'user.apps.UserConfig',
     ]
     ```
@@ -43,6 +48,14 @@ $ git clone git@github.com:ViniciusNunesMartins/user.git
 
   LOGIN_URL = '/user/login/'
   ```
+  * REST_FRAMEWORK
+  ```python
+  REST_FRAMEWORK = {
+      'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+      ]
+    }
+  ```
 * Add app routes to project routes at <project_name>/urls.py
 ```python
 from django.urls import path, include
@@ -50,6 +63,7 @@ from django.urls import path, include
 urlpatterns = [
   #...
   path('user/', include("user.urls")),
+  path('api-auth/', include('rest_framework.urls'))
 ]
 
 ```
