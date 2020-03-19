@@ -17,7 +17,8 @@ $ git clone git@github.com:ViniciusNunesMartins/user.git
     ```python
     INSTALLED_APPS = [
         #...
-        'rest_framework'
+        'django.contrib.sites',
+        'rest_framework',
         'user.apps.UserConfig',
     ]
     ```
