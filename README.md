@@ -43,11 +43,13 @@ $ git clone git@github.com:ViniciusNunesMartins/user.git
         },
     ]
     ```
-  * AUTH_USER_MODEL and LOGIN_URL
+  * AUTH_USER_MODEL, LOGIN_URL and SITE_ID
   ```python
   AUTH_USER_MODEL = 'user.User'
 
   LOGIN_URL = '/user/login/'
+  
+  SITE_ID = 1
   ```
   * REST_FRAMEWORK
   ```python
