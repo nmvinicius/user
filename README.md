@@ -31,7 +31,7 @@ $ pip install djangorestframework markdown django-filter
 ```
 * Clone the application at the project root
 ```shell script
-$ git clone git@github.com:ViniciusNunesMartins/user.git
+$ git submodule add git@github.com:ViniciusNunesMartins/user.git
 ```
 * Now, just add the following variables in <project_name>/settings.py
   * INSTALLED_APPS
