@@ -1,46 +1,11 @@
-{%  extends 'MainLayout.html' %}
-{% block head %}
-{% endblock %}
 {% block main %}
-    <style>
-        #profile, #profile > div {
-            border-radius: 15px;
-            border: 1px solid grey;
-            background-color: rgba(128, 128, 128, .8);
-        }
-        #header {
-            border-bottom-left-radius: 0!important;
-            border-bottom-right-radius: 0!important;
-            padding: 5px;
-            display: flex;
-            background-color: gray !important;
-            justify-content: space-evenly;
-        }
-        #image_profile {
-            border-radius: 5%;
-        }
-        #delete {
-            text-decoration: none;
-            background-color: rgba(255, 0, 0, .6);
-            color: white;
-            padding: 10px;
-            margin: 15px;
-            float: left;
-            border-radius: 5px;
-        }
-        #delete:hover {
-            background-color: rgba(255, 0, 0, 1);
-        }
-    </style>
-    <div id="profile">
-        <div id="header">
-            <img id="image_profile" src="{{ user.avatar.url }}" height="150">
-            <h1>{{ user.get_full_name }}</h1>
-        </div>
+    <div>
+        <h1>{{ user.get_full_name }}</h1>
         <ul>
+            <li><img src="{{ user.avatar.url }}" height="150"></li>
             <li>{{ user.email }}</li>
             <li>{{ user.date_joined }}</li>
+            <li><a href="{% url 'user_delete' %}">Delete user</a></li>
         </ul>
-        <a id="delete" href="{% url 'user_delete' %}">Deletar Conta</a>
     </div>
 {% endblock %}

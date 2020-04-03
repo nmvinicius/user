@@ -14,16 +14,18 @@ def user_register(request):
             user.save()
             login(request, authenticate(email=request.POST.get('email'), password=request.POST.get('password')))
             return redirect('user_profile')
-        else:
-            print(user_form.data)
-            return render(request, 'register.html', {"form": UserFormRegister(), "messages": user_form.errors})
-    else:
+    try:
+        return render(request, 'user/register.html', {"form": UserFormRegister()})
+    except:
         return render(request, 'register.html', {"form": UserFormRegister()})
 
 
 @login_required
 def user_profile(request):
-    return render(request, 'profile.html', {})
+    try:
+        return render(request, 'user/profile.html', {})
+    except:
+        return render(request, 'profile.html', {})
 
 
 @login_required
@@ -49,9 +51,8 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 return redirect('user_profile')
-            else:
-                return redirect('user_login')
-        else:
-            return redirect('user_login')
-    else:
+        return redirect('user_login')
+    try:
+        return render(request, 'user/login.html', {"form": UserFormLogin(), "users": User.objects.all()})
+    except:
         return render(request, 'login.html', {"form": UserFormLogin(), "users": User.objects.all()})
