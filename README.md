@@ -3,6 +3,27 @@
 ## Description
 This is a django app for user control
 
+```shell script
+$ tree -I 'migrations|__pycache__' user
+user
+├── admin.py
+├── apps.py
+├── forms.py
+├── __init__.py
+├── managers.py
+├── models.py
+├── README.md
+├── serializers.py
+├── template
+│   ├── login.html
+│   ├── profile.html
+│   └── register.html
+├── tests.py
+├── urls.py
+├── viewsets.py
+└── views.py
+```
+
 ## Installation
 * Install django rest framework
 ```shell script
@@ -69,6 +90,7 @@ urlpatterns = [
 ]
 
 ```
+
 * And run makemigrations and migrate
 ```shell script
 $ python manage.py makemigrations
