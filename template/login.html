@@ -1,5 +1,5 @@
 {% block main %}
-    <form action="." method="POST">
+    <form action="{% url 'user_login' %}" method="POST">
         <h1>Login</h1>
         {% csrf_token %}
         {{ form }}
