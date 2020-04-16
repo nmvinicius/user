@@ -25,9 +25,9 @@ user
 ```
 
 ## Installation
-* Install django rest framework
+* Install django rest framework and pillow
 ```shell script
-$ pip install djangorestframework markdown django-filter
+$ pip install djangorestframework markdown django-filter pillow
 ```
 * Clone the application at the project root
 ```shell script
