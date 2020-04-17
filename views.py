@@ -3,6 +3,14 @@ from django.contrib.auth.decorators import login_required
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserFormRegister, UserFormLogin
+import os
+
+
+def get_layout() -> str:
+    if os.path.exists('templates/baseLayout.html'):
+        return 'baseLayout.html'
+    else:
+        return 'baseNone.html'
 
 
 def user_register(request):
@@ -14,18 +22,12 @@ def user_register(request):
             user.save()
             login(request, authenticate(email=request.POST.get('email'), password=request.POST.get('password')))
             return redirect('user_profile')
-    try:
-        return render(request, 'user/register.html', {"form": UserFormRegister()})
-    except:
-        return render(request, 'register.html', {"form": UserFormRegister()})
+    return render(request, 'register.html', {"form": UserFormRegister(), "layout": get_layout()})
 
 
 @login_required
 def user_profile(request):
-    try:
-        return render(request, 'user/profile.html', {})
-    except:
-        return render(request, 'profile.html', {})
+    return render(request, 'profile.html', {"layout": get_layout()})
 
 
 @login_required
@@ -52,7 +54,4 @@ def user_login(request):
                 login(request, user)
                 return redirect('user_profile')
         return redirect('user_login')
-    try:
-        return render(request, 'user/login.html', {"form": UserFormLogin(), "users": User.objects.all()})
-    except:
-        return render(request, 'login.html', {"form": UserFormLogin(), "users": User.objects.all()})
+    return render(request, 'login.html', {"form": UserFormLogin(), "users": User.objects.all(), "layout": get_layout()})
