@@ -17,7 +17,7 @@ def user_register(request):
     if request.method == "POST":
         user_form = UserFormRegister(request.POST, request.FILES)
         if user_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
             user.set_password(user.password)
             user.save()
             login(request, authenticate(email=request.POST.get('email'), password=request.POST.get('password')))
