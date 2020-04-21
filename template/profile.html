@@ -1,11 +1,13 @@
 {% extends layout %}
 {% block main %}
-    <div>
+    <div style="width: fit-content; margin: auto">
         <h1>{{ user.get_full_name }}</h1>
-        <ul>
-            <li><img src="{{ user.avatar.url }}" height="150"></li>
+        <img src="{{ user.avatar.url }}" height="150">
+        <ul style="float: right">
             <li>{{ user.email }}</li>
             <li>{{ user.date_joined }}</li>
+            {% if user.is_staff %}<li>Is staff</li>{% endif %}
+            {% if user.is_superuser %}<li>Is Superuser</li>{% endif %}
             <li><a href="{% url 'user_delete' %}">Delete user</a></li>
         </ul>
     </div>
