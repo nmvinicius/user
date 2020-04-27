@@ -15,6 +15,7 @@ user
 ├── README.md
 ├── serializers.py
 ├── template
+│   ├── baseNone.html
 │   ├── login.html
 │   ├── profile.html
 │   └── register.html
