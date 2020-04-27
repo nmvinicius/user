@@ -2,12 +2,16 @@
 {% block main %}
     <div style="width: fit-content; margin: auto">
         <h1>{{ user.get_full_name }}</h1>
-        <img src="{{ user.avatar.url }}" height="150">
+        {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" height="150">
+        {% endif %}
         <ul style="float: right">
             <li>{{ user.email }}</li>
             <li>{{ user.date_joined }}</li>
             {% if user.is_staff %}<li>Is staff</li>{% endif %}
-            {% if user.is_superuser %}<li>Is Superuser</li>{% endif %}
+            {% if user.is_superuser %}<li>Is superuser</li>{% endif %}
+            {% if user.is_superuser %}<li><a href="/admin/">Admin</a></li>{% endif %}
+            <li><a href="{% url 'user_logout' %}">Exit user</a></li>
             <li><a href="{% url 'user_delete' %}">Delete user</a></li>
         </ul>
     </div>

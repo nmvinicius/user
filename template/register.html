@@ -5,6 +5,7 @@
         {% csrf_token %}
         {{ form }}
         <input type="submit" name="" value="Register">
+        <a href="{% url 'user_login' %}">Login</a>
     </form>
     {% if messages %}
         {{ messages }}
