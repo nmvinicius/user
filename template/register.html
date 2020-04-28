@@ -1,6 +1,6 @@
 {% extends layout %}
 {% block main %}
-    <form action="{% url 'user_register' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'user_register' %}" method="POST" enctype="multipart/form-data" style="width: fit-content; margin: auto">
         <h1>Register</h1>
         {% csrf_token %}
         {{ form }}
