@@ -5,6 +5,9 @@
     {% endblock %}
 </head>
 <body>
+    {% if mensagens %}
+        {{ mensagens }}
+    {% endif %} 
     {% block main %}
 
     {% endblock %}

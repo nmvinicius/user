@@ -1,8 +1,11 @@
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .forms import UserFormRegister, UserFormLogin
+from django.utils.translation import ugettext_lazy as _
 import os
 
 
@@ -55,3 +58,18 @@ def user_login(request):
         return redirect('user_profile')
     return redirect('user_login')
   return render(request, 'login.html', {"form": UserFormLogin(), "users": User.objects.all(), "layout": get_layout()})
+
+
+@login_required
+def user_change_password(request):
+  if request.method == "POST":
+    form = PasswordChangeForm(request.user, request.POST)
+    if form.is_valid():
+      user = form.save()
+      update_session_auth_hash(request, user)
+      messages.success(request, _('Your password was successfully updated!'))
+      return redirect('user_profile')
+    else:
+      messages.error(request, _('Please correct the error below.'))
+      return redirect('user_change_password')
+  return render(request, 'changepassword.html', {'form': PasswordChangeForm(request.user), "layout": get_layout()})
