@@ -27,3 +27,12 @@ class UserFormUpdateAvatar(forms.ModelForm):
   class Meta:
     model = User
     fields = ['password', 'avatar']
+
+
+class UserFormsUpdateEmail(forms.ModelForm):
+  email = forms.EmailField()
+  password = forms.CharField(widget=forms.PasswordInput())
+
+  class Meta:
+    model = User
+    fields = ['password', 'email']

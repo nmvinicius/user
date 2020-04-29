@@ -11,6 +11,7 @@
             <li>Last login: {{ user.last_login }}</li>
             {% if user.is_staff %}<li>Is staff</li>{% endif %}
             {% if user.is_superuser %}<li><a href="/admin/">Is superuser</a></li>{% endif %}
+            <li><a href="{% url 'user_change_email' %}">Change e-mail</a></li>
             <li><a href="{% url 'user_change_password' %}">Change password</a></li>
             <li><a href="{% url 'user_change_avatar' %}">Change avatar</a></li>
             <li><a href="{% url 'user_logout' %}">Exit</a></li>

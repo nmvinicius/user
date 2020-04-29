@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import User
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from .forms import UserFormRegister, UserFormLogin, UserFormUpdateAvatar
+from .forms import UserFormRegister, UserFormLogin, UserFormUpdateAvatar, UserFormsUpdateEmail
 from django.utils.translation import ugettext_lazy as _
 import os
 
@@ -79,20 +79,34 @@ def user_change_password(request):
 def user_change_avatar(request):
   if request.method == "POST":
     form = UserFormUpdateAvatar(request.POST, request.FILES)
-    print(request.POST.get('password'), request.POST.get('avatar'))
     if form.is_valid():
       if request.user.check_password(form.cleaned_data['password']):
         avatar = form.cleaned_data['avatar']
-        print(avatar)
         request.user.avatar = avatar
-        messages.success(request, _('Your password was successfully updated!'))
+        messages.success(request, _('Your avatar was successfully updated!'))
         request.user.save()
         return redirect('user_profile')
-
     messages.error(request, _('Please correct the error below.'))
     return redirect('user_change_avatar')
-
   return render(request, 'user_change_avatar.html', {
     'form': UserFormUpdateAvatar(),
+    'layout': get_layout()
+  })
+
+
+@login_required
+def user_change_email(request):
+  if request.method == "POST":
+    form = UserFormsUpdateEmail(request.POST)
+    if form.is_valid():
+      if request.user.check_password(form.cleaned_data['password']):
+        request.user.email = form.cleaned_data['email']
+        messages.success(request, _('Your email was successfully updated!'))
+        request.user.save()
+        return redirect('user_profile')
+    messages.error(request, _('Please correct the error below.'))
+    return redirect('user_change_email')
+  return render(request, 'user_change_email.html', {
+    'form': UserFormsUpdateEmail(),
     'layout': get_layout()
   })

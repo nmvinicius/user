@@ -25,7 +25,8 @@ user
 │   ├── profile.html.py
 │   ├── register.html
 │   ├── register.html.py
-│   └── user_change_avatar.html
+│   ├── user_change_avatar.html
+│   └── user_change_email.html
 ├── tests.py
 ├── urls.py
 ├── viewsets.py

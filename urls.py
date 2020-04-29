@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import user_login, user_register, user_logout, user_profile, user_delete, user_change_password, user_change_avatar
+from .views import user_login, user_register, user_logout, user_profile, user_delete, user_change_password, \
+  user_change_avatar, user_change_email
 from rest_framework import routers
 from .viewsets import UserViewSet
 
@@ -17,4 +18,5 @@ urlpatterns = [
   path('delete/', user_delete, name='user_delete'),
   path('change-password/', user_change_password, name='user_change_password'),
   path('change-avatar/', user_change_avatar, name='user_change_avatar'),
+  path('change-email/', user_change_email, name='user_change_email')
 ]
