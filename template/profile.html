@@ -5,13 +5,15 @@
         {% if user.avatar %}
             <img src="{{ user.avatar.url }}" height="150">
         {% endif %}
-        <ul style="float: right">
+        <ul style="float: right; margin-block-start: 0 !important; margin-block-end: 0 !important;">
             <li>{{ user.email }}</li>
-            <li>{{ user.date_joined }}</li>
+            <li>Date joined: {{ user.date_joined }}</li>
+            <li>Last login: {{ user.last_login }}</li>
             {% if user.is_staff %}<li>Is staff</li>{% endif %}
-            {% if user.is_superuser %}<li>Is superuser</li>{% endif %}
-            {% if user.is_superuser %}<li><a href="/admin/">Admin</a></li>{% endif %}
-            <li><a href="{% url 'user_logout' %}">Exit user</a></li>
+            {% if user.is_superuser %}<li><a href="/admin/">Is superuser</a></li>{% endif %}
+            <li><a href="{% url 'user_change_password' %}">Change password</a></li>
+            <li><a href="{% url 'user_change_avatar' %}">Change avatar</a></li>
+            <li><a href="{% url 'user_logout' %}">Exit</a></li>
             <li><a href="{% url 'user_delete' %}">Delete user</a></li>
         </ul>
     </div>

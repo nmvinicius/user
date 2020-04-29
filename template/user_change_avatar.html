@@ -1,0 +1,9 @@
+{% extends layout %}
+{% block main %}
+    <form action="." method="POST" enctype="multipart/form-data" style="width: fit-content; margin: auto">
+        <h1>Avatar update</h1>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

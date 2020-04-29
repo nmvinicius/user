@@ -18,3 +18,12 @@ class UserFormLogin(forms.ModelForm):
   class Meta:
     model = User
     fields = ['email', 'password']
+
+
+class UserFormUpdateAvatar(forms.ModelForm):
+  avatar = forms.ImageField()
+  password = forms.CharField(widget=forms.PasswordInput())
+
+  class Meta:
+    model = User
+    fields = ['password', 'avatar']
