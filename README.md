@@ -16,9 +16,16 @@ user
 ├── serializers.py
 ├── template
 │   ├── baseNone.html
+│   ├── baseNone.html.py
+│   ├── changepassword.html
+│   ├── changepassword.html.py
 │   ├── login.html
+│   ├── login.html.py
 │   ├── profile.html
-│   └── register.html
+│   ├── profile.html.py
+│   ├── register.html
+│   ├── register.html.py
+│   └── user_change_avatar.html
 ├── tests.py
 ├── urls.py
 ├── viewsets.py
@@ -79,6 +86,11 @@ $ git submodule add git@github.com:ViniciusNunesMartins/user.git
       'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
   }
+  ```
+  * MEDIA_URL and MEDIA_ROOT
+  ```python
+  MEDIA_URL = '/media/'
+  MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
   ```
 * Add app routes to project routes at <project_name>/urls.py
 ```python
