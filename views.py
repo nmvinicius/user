@@ -25,12 +25,18 @@ def user_register(request):
       user.save()
       login(request, authenticate(email=request.POST.get('email'), password=request.POST.get('password')))
       return redirect('user_profile')
-  return render(request, 'register.html', {"form": UserFormRegister(), "layout": get_layout()})
+  try:
+    return render(request, 'user/register.html', {"form": UserFormRegister()})
+  except:
+    return render(request, 'register.html', {"form": UserFormRegister(), "layout": get_layout()})
 
 
 @login_required
 def user_profile(request):
-  return render(request, 'profile.html', {"layout": get_layout()})
+  try:
+    return render(request, 'user/profile.html', {})
+  except:
+    return render(request, 'profile.html', {"layout": get_layout()})
 
 
 @login_required
@@ -57,7 +63,10 @@ def user_login(request):
         login(request, user)
         return redirect('user_profile')
     return redirect('user_login')
-  return render(request, 'login.html', {"form": UserFormLogin(), "users": User.objects.all(), "layout": get_layout()})
+  try:
+    return render(request, 'user/login.html', {"forms": UserFormLogin()})
+  except:
+    return render(request, 'login.html', {"form": UserFormLogin(), "layout": get_layout()})
 
 
 @login_required
@@ -72,7 +81,10 @@ def user_change_password(request):
     else:
       messages.error(request, _('Please correct the error below.'))
       return redirect('user_change_password')
-  return render(request, 'changepassword.html', {'form': PasswordChangeForm(request.user), 'layout': get_layout()})
+  try:
+    return render(request, 'user/changepassword.html', {"form": PasswordChangeForm(request.user)})
+  except:
+    return render(request, 'changepassword.html', {'form': PasswordChangeForm(request.user), 'layout': get_layout()})
 
 
 @login_required
@@ -88,10 +100,13 @@ def user_change_avatar(request):
         return redirect('user_profile')
     messages.error(request, _('Please correct the error below.'))
     return redirect('user_change_avatar')
-  return render(request, 'user_change_avatar.html', {
-    'form': UserFormUpdateAvatar(),
-    'layout': get_layout()
-  })
+  try:
+    return render(request, 'user/user_change_avatar.html', {'form': UserFormUpdateAvatar()})
+  except:
+    return render(request, 'user_change_avatar.html', {
+      'form': UserFormUpdateAvatar(),
+      'layout': get_layout()
+    })
 
 
 @login_required
@@ -106,7 +121,10 @@ def user_change_email(request):
         return redirect('user_profile')
     messages.error(request, _('Please correct the error below.'))
     return redirect('user_change_email')
-  return render(request, 'user_change_email.html', {
-    'form': UserFormsUpdateEmail(),
-    'layout': get_layout()
-  })
+  try:
+    return render(request, 'user/user_change_email.html', {'form': UserFormsUpdateEmail()})
+  except:
+    return render(request, 'user_change_email.html', {
+      'form': UserFormsUpdateEmail(),
+      'layout': get_layout()
+    })
