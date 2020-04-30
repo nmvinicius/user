@@ -21,8 +21,8 @@ user
 │   ├── changepassword.html.py
 │   ├── login.html
 │   ├── login.html.py
-│   ├── profile.html
-│   ├── profile.html.py
+│   ├── _profile.html
+│   ├── _profile.html.py
 │   ├── register.html
 │   ├── register.html.py
 │   ├── user_change_avatar.html

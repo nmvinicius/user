@@ -26,7 +26,7 @@ def user_register(request):
       login(request, authenticate(email=request.POST.get('email'), password=request.POST.get('password')))
       return redirect('user_profile')
   try:
-    return render(request, 'user/register.html', {"form": UserFormRegister()})
+    return render(request, 'user/_register.html', {"form": UserFormRegister()})
   except:
     return render(request, 'register.html', {"form": UserFormRegister(), "layout": get_layout()})
 
@@ -34,7 +34,7 @@ def user_register(request):
 @login_required
 def user_profile(request):
   try:
-    return render(request, 'user/profile.html', {})
+    return render(request, 'user/_profile.html', {})
   except:
     return render(request, 'profile.html', {"layout": get_layout()})
 
@@ -64,7 +64,7 @@ def user_login(request):
         return redirect('user_profile')
     return redirect('user_login')
   try:
-    return render(request, 'user/login.html', {"forms": UserFormLogin()})
+    return render(request, 'user/_login.html', {"forms": UserFormLogin()})
   except:
     return render(request, 'login.html', {"form": UserFormLogin(), "layout": get_layout()})
 
@@ -82,7 +82,7 @@ def user_change_password(request):
       messages.error(request, _('Please correct the error below.'))
       return redirect('user_change_password')
   try:
-    return render(request, 'user/changepassword.html', {"form": PasswordChangeForm(request.user)})
+    return render(request, 'user/_changepassword.html', {"form": PasswordChangeForm(request.user)})
   except:
     return render(request, 'changepassword.html', {'form': PasswordChangeForm(request.user), 'layout': get_layout()})
 
@@ -101,7 +101,7 @@ def user_change_avatar(request):
     messages.error(request, _('Please correct the error below.'))
     return redirect('user_change_avatar')
   try:
-    return render(request, 'user/user_change_avatar.html', {'form': UserFormUpdateAvatar()})
+    return render(request, 'user/_user_change_avatar.html', {'form': UserFormUpdateAvatar()})
   except:
     return render(request, 'user_change_avatar.html', {
       'form': UserFormUpdateAvatar(),
@@ -122,7 +122,7 @@ def user_change_email(request):
     messages.error(request, _('Please correct the error below.'))
     return redirect('user_change_email')
   try:
-    return render(request, 'user/user_change_email.html', {'form': UserFormsUpdateEmail()})
+    return render(request, 'user/_user_change_email.html', {'form': UserFormsUpdateEmail()})
   except:
     return render(request, 'user_change_email.html', {
       'form': UserFormsUpdateEmail(),
